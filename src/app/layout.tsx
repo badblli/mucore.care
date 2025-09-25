@@ -50,24 +50,28 @@ export default function RootLayout({
           src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
           async
         ></script>
-        <script>
-          window.OneSignal = window.OneSignal || [];
-          OneSignal.push(function () {
-            OneSignal.init({
-              appId: process.env.ONESIGNAL_APP_ID,
-              safari_web_id: "YOUR_SAFARI_WEB_ID", // If you plan to support Safari push
-              autoResubscribe: true,
-              notifyButton: {
-                enable: true,
-              },
-            });
-          });
-        </script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+                window.OneSignal = window.OneSignal || [];
+                OneSignal.push(function () {
+                  OneSignal.init({
+                    appId: "${process.env.NEXT_PUBLIC_ONESIGNAL_APP_ID}",
+                    safari_web_id: "YOUR_SAFARI_WEB_ID", // If you plan to support Safari push
+                    autoResubscribe: true,
+                    notifyButton: {
+                      enable: true,
+                    },
+                  });
+                });
+              `,
+          }}
+        />
       </body>
     </html>
   );
