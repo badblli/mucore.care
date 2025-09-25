@@ -149,7 +149,7 @@ export function VitalForm({
                   onChange={(e) =>
                     handleInputChange(
                       "bpSys",
-                      parseInt(e.target.value) || undefined
+                      e.target.value ? parseInt(e.target.value) : ""
                     )
                   }
                   className={getVitalStatus("bpSys", formData.bpSys)}
@@ -167,7 +167,7 @@ export function VitalForm({
                   onChange={(e) =>
                     handleInputChange(
                       "bpDia",
-                      parseInt(e.target.value) || undefined
+                      e.target.value ? parseInt(e.target.value) : ""
                     )
                   }
                   className={getVitalStatus("bpDia", formData.bpDia)}
@@ -194,7 +194,7 @@ export function VitalForm({
                 onChange={(e) =>
                   handleInputChange(
                     "glucose",
-                    parseInt(e.target.value) || undefined
+                    e.target.value ? parseInt(e.target.value) : ""
                   )
                 }
                 className={getVitalStatus("glucose", formData.glucose)}
@@ -218,7 +218,7 @@ export function VitalForm({
                 onChange={(e) =>
                   handleInputChange(
                     "temp",
-                    parseFloat(e.target.value) || undefined
+                    e.target.value ? parseFloat(e.target.value) : ""
                   )
                 }
                 className={getVitalStatus("temp", formData.temp)}
@@ -238,7 +238,7 @@ export function VitalForm({
                 onChange={(e) =>
                   handleInputChange(
                     "pulse",
-                    parseInt(e.target.value) || undefined
+                    e.target.value ? parseInt(e.target.value) : ""
                   )
                 }
                 className={getVitalStatus("pulse", formData.pulse)}
@@ -258,7 +258,7 @@ export function VitalForm({
                 onChange={(e) =>
                   handleInputChange(
                     "spo2",
-                    parseInt(e.target.value) || undefined
+                    e.target.value ? parseInt(e.target.value) : ""
                   )
                 }
                 className={getVitalStatus("spo2", formData.spo2)}
