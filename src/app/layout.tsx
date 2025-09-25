@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,7 +25,6 @@ export const metadata: Metadata = {
     "evde bakım",
   ],
   authors: [{ name: "Mucore Care" }],
-  viewport: "width=device-width, initial-scale=1",
   manifest: "/manifest.json",
   themeColor: "#2563EB",
   appleWebApp: {
@@ -38,6 +38,11 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -46,32 +51,30 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <head>
-        <script
+        <Script
           src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
-          async
-        ></script>
+          strategy="lazyOnload"
+        />
+        <Script id="onesignal-init" strategy="afterInteractive">
+          {`
+            window.OneSignal = window.OneSignal || [];
+            OneSignal.push(function () {
+              OneSignal.init({
+                appId: "${process.env.NEXT_PUBLIC_ONESIGNAL_APP_ID}",
+                safari_web_id: "YOUR_SAFARI_WEB_ID", // If you plan to support Safari push
+                autoResubscribe: true,
+                notifyButton: {
+                  enable: true,
+                },
+              });
+            });
+          `}
+        </Script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-                window.OneSignal = window.OneSignal || [];
-                OneSignal.push(function () {
-                  OneSignal.init({
-                    appId: "${process.env.NEXT_PUBLIC_ONESIGNAL_APP_ID}",
-                    safari_web_id: "YOUR_SAFARI_WEB_ID", // If you plan to support Safari push
-                    autoResubscribe: true,
-                    notifyButton: {
-                      enable: true,
-                    },
-                  });
-                });
-              `,
-          }}
-        />
       </body>
     </html>
   );

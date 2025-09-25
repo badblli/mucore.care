@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,8 +9,34 @@ import {
 } from "@/components/ui/card";
 import { Heart, Pill, Calendar, Activity, Users, Shield } from "lucide-react";
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/client";
+import React from "react";
 
 export default function Home() {
+  const supabase = createClient();
+
+  async function testSupabaseConnection() {
+    const { data, error } = await supabase.from("tenants").select("*").limit(1);
+
+    if (error) {
+      console.error("Supabase bağlantı testi başarısız:", error.message);
+      alert("Supabase bağlantı hatası: " + error.message);
+    } else if (data && data.length > 0) {
+      console.log("Supabase bağlantı testi başarılı! Tenant veri:", data);
+      alert("Supabase bağlantısı başarılı!");
+    } else {
+      console.log("Supabase bağlantı testi başarılı, ancak tenant bulunamadı.");
+      alert("Supabase bağlantısı başarılı (tenant yok).");
+    }
+  }
+
+  React.useEffect(() => {
+    testSupabaseConnection();
+  }, []);
+
+  // Veya bir düğmeye tıklayarak test etmek için:
+  // <Button onClick={testSupabaseConnection}>Supabase Bağlantısını Test Et</Button>
+
   const features = [
     {
       icon: Heart,
