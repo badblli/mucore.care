@@ -5,6 +5,10 @@
 
 ---
 
+## Proje Durumu
+
+Erken aşama bir prototiptir; gerçek hasta verileriyle veya klinik kullanımda kullanılmamalıdır. Kimlik doğrulama, yetkilendirme ve veri gizliliği üretim kullanımı için ayrıca doğrulanmalıdır.
+
 ## 🎯 Amaç
 - Hastanın genel bilgilerini (tanılar, ameliyatlar, alerjiler, cihazlar) saklamak  
 - Günlük vital ölçümleri (tansiyon, şeker, ateş, nabız, SpO₂) kaydetmek  
@@ -79,8 +83,8 @@
 ## 🔧 Kurulum
 ```bash
 # Projeyi indir
-git clone https://github.com/<kullanıcı-adı>/mucore-care.git
-cd mucore-care
+git clone https://github.com/badblli/mucore.care.git
+cd mucore.care
 
 # Bağımlılıkları yükle
 npm install

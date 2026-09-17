@@ -61,7 +61,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/username/mucore-care.git"
+    "url": "https://github.com/badblli/mucore.care.git"
   },
   "engines": {
     "node": ">=18.0.0",
